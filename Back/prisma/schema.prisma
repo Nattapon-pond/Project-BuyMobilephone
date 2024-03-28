@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id              Int               @id @default(autoincrement())
+  role            Role              @default(USER)
+  username        String
+  password        String
+  email           String?           @unique
+  address         String?
+  phone           String
+  orders          Order[]
+  cards           Card[]
+  ShippingAddress ShippingAddress[]
+  shoppingCart    ShoppingCart?
+}
+
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+//สั้งซื้อ
+model Order {
+  id                Int              @id @default(autoincrement())
+  orderDate         DateTime         @default(now())
+  status            OrderStatus?     @default(value: PENDING)
+  deliveryFee       Int              @default(0)
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId            Int              @map("userId")
+  orderDetails      OrderDetail[]
+  payment           Payment[]
+  ShippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
+  shippingAddressId Int?
+}
+
+//รายละเอียดสินค้า
+model OrderDetail {
+  id        Int     @id @default(autoincrement())
+  quantity  Int
+  price     Int
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  orderId   Int     @map("orderId")
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId Int
+}
+
+model Product {
+  id          Int            @id @default(autoincrement())
+  name        String
+  brand       String
+  price       Int            @default(0)
+  color       String
+  description String
+  stock       Int            // เพิ่ม Stock ที่นี่
+  image       String?
+  orderDetails OrderDetail[]  // เพิ่ม OrderDetails เพื่อเชื่อมโมเดล Product กับ OrderDetail
+  ShoppingCartItem ShoppingCartItem[]
+  @@index([name, brand])  // เพิ่มดัชนีสำหรับชื่อสินค้าและแบรนด์เพื่อเพิ่มประสิทธิภาพในการค้นหา
+}
+
+//รายการสินค้าในตะกร้า 
+model ShoppingCartItem {
+  id             Int          @id @default(autoincrement())
+  productId      Int
+  quantity       Int
+  shoppingCart   ShoppingCart @relation(fields: [shoppingCartId], references: [id])
+  shoppingCartId Int
+  product        Product      @relation(fields: [productId], references: [id])
+}
+
+//ตะกร้าช้อปปิ้ง
+model ShoppingCart {
+  id        Int                @id @default(autoincrement())
+  userId    Int                @unique
+  user      User               @relation(fields: [userId], references: [id])
+  cartItems ShoppingCartItem[]
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+//การจ่ายตัง
+model Payment {
+  id             Int             @id @default(autoincrement())
+  paymentDate    DateTime        @default(now())
+  payment_method String
+  amount         Int
+  status         PaymentStatus   @default(value: PENDING)
+  order          Order           @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  orderId        Int             @map("Order_Id")
+  shipping       ShippingAddress @relation(fields: [shippingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  shippingId     Int
+}
+
+//ที่อยู่จัดส่ง
+model ShippingAddress {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  address     String
+  subdistrict String
+  district    String
+  province    String
+  postalCode  String
+  user        User      @relation(fields: [userId], references: [id])
+  orders      Order[]
+  payments    Payment[] // เพิ่มความสัมพันธ์ที่ชัดเจน
+}
+
+//วิธีการชำระเงิน
+model Card {
+  id     Int    @id @default(autoincrement())
+  number String
+  cvv    String
+  month  String
+  year   String
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+}
+//ติดต่อเรา
+model Contact {
+  id        Int     @id @default(autoincrement())
+  firstName String  @map("first_name")
+  lastName  String  @map("last_name")
+  email     String?
+  message   String
+}

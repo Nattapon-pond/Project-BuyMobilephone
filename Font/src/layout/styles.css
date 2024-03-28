@@ -1,0 +1,303 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* ย้าย element ไปตรงกลางแนวนอน */
+  align-items: center; /* ย้าย element ไปตรงกลางแนวตั้ง */
+  height: 100vh; /* ทำให้ container ทั้งหมดเต็มขนาดความสูงของหน้าจอ */
+}
+
+
+
+
+
+/*ปุ่ม ตรงกลางของเเต่ละหน้า */
+
+.button-container-group {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+  margin-top: -515px;
+}
+
+.button-container-group .btn {
+  margin: 0 15px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.form-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.form-control1 {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 80%; /* ปรับความกว้างของช่องค้นหาให้เป็น 80% ของขนาดหน้าจอ */
+}
+
+.input {
+  width: 100%; /* กำหนดให้ input เต็มความกว้างของ form-control */
+}
+
+.searchBox {
+  position: absolute;
+  top: 10%;
+  left: 65%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 50px;
+  width: 25vw; /* ปรับความกว้างให้เป็น 25% ของ viewport width */
+}
+
+@media screen and (max-width: 1600px) {
+  .searchBox {
+    width: 20vw; /* เมื่อหน้าจอย่อลงถึง 768px ให้ความกว้างเป็น 40% ของ viewport width */
+  }
+}
+
+.searchBox input {
+  padding: 8px 12px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  outline: none;
+  width: 65%;
+}
+
+.searchBox button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: -30px;
+}
+
+.searchBox button svg {
+  color: #555;
+  width: 50px;
+  height: 30px;
+}
+
+.searchBox input {
+  padding-right: 30px;
+}
+
+.searchButton {
+  background-color: transparent;
+  border: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 8px;
+  border-radius: 10%;
+  left: 10px;
+}
+
+.searchButton:hover {
+  background-color: #4caf50;
+}
+
+.logoG {
+  width: 150px; /* กำหนดความกว้างของโลโก้ */
+  height: 150px; /* กำหนดความสูงของโลโก้ */
+  background-image: url("../Photos/NN_Phone_Shop-removebg-preview.png");
+  background-size: contain; /* ตรวจจับขนาดภาพโดยให้พอดีกับพื้นที่โลโก้ */
+  margin-bottom: 4vh;
+  margin-left: 2.5vw;
+  position: fixed;
+  top: 0;
+  left: 2.5vw;
+}
+.navbermanu {
+  display: flex;
+  gap: 2.5vw;
+  margin-bottom: 4vh;
+  margin-left: 1.5vw;
+  position: fixed;
+  top: 8%;
+  left: 15vw;
+}
+
+@media screen and (max-width: 768px) {
+  .navbermanu {
+    flex-direction: row; /* เปลี่ยนเป็นการแสดงแนวตั้ง */
+    align-items: flex-start; /* ชิดซ้าย */
+    top: 20%; /* ปรับ top ให้ไม่ติดกับด้านบนมากเกินไป */
+    left: 2.5vw; /* ปรับ left เพื่อชิดด้านซ้าย */
+  }
+
+  .navbermanu a {
+    margin-bottom: 2vh; /* ปรับขนาดระยะห่างระหว่างปุ่ม */
+  }
+}
+
+
+
+.carditrm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 1100px;
+  height: 480px;
+  margin-top: 50px;
+  background: url(1.png);
+  border-radius: 50px;
+  margin-left: 22%;
+}
+
+.card {
+  width: 90px;
+  height: 90px;
+} 
+.carditrmproduct1 {
+  max-width: 80rem;
+  background-color: #f3f4f6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  margin-left: 10rem; /* Center horizontally */
+  margin-top: 15rem; /* Adjust as needed */
+  width: 450px; /* Adjust width */
+  height: 600px; /* Adjust height */
+  display: flex;
+  flex-direction: column; /* Arrange as column */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+}
+
+
+
+.carditrmproduct {
+  max-width: 20rem;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  margin-right: 1rem;
+  margin-top: 4rem;
+  width: 450px; /* ปรับขนาดความกว้างเป็น 450px */
+  height: 300px; /* ปรับขนาดความสูงเป็น 300px */
+  display: flex;
+  flex-direction: column; /* จัดเรียงเป็นคอลัมน์ */
+  justify-content: flex-start; /* จัดเรียงแนวตั้งด้านบน */
+  height: 500px;
+  flex-grow: 1;
+}
+.carditrmproduct .figure {
+  height: 200px; /* กำหนดความสูงของภาพ */
+}
+.carditrmproduct .text-center {
+  height: 150px; /* กำหนดความสูงของข้อความ */
+}
+
+/*ระยะห่างของ เเต่ละ itmeproduct*/
+.figure {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* จัดรูปภาพด้านบน */
+  height: 100%; /* ปรับความสูงเป็น 100% เพื่อให้รูปภาพอยู่ด้านบน */
+  margin-top: 60px; /* ปรับระยะห่างระหว่างรูปภาพกับขอบบนของ figure */
+  margin-bottom: 10px; /* ปรับระยะห่างระหว่างรูปภาพกับขอบล่างของ figure */
+  
+  
+  
+}
+
+/*ขนาดรูปของproduct*/
+.card-properties{
+  background-color: #ffffff;
+  border-radius: 1rem; /* ใช้ border-radius เพื่อกำหนดมุมโค้ง */
+  height: 120%; 
+  
+}
+
+.background-containerG {
+  background-image: url("../Photos/1.webp"); /* รูปภาพที่คุณต้องการใช้เป็นพื้นหลัง */
+  background-size: contain; /* ปรับขนาดของรูปภาพให้พอดีกับพื้นที่ */
+  background-repeat: no-repeat; /* ไม่ให้รูปภาพซ้ำซ้อน */
+  background-position: center; /* จัดตำแหน่งรูปภาพตรงกลาง */
+  overflow-y: scroll;
+  /* คุณสามารถเพิ่มสไตล์เพิ่มเติมได้ตามความต้องการ */
+}
+
+.centered-div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  width: 900px;
+  height: 900px;
+}
+
+.border {
+  border: 1px solid #e2e8f0;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); /* เพิ่มเงา */
+}
+
+.border-rounded {
+  border-radius: 20px;
+}
+
+.shadow {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  border-radius: 6px;
+}
+
+.btn {
+  border-radius: 6px;
+}
+
+.text-3xl {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+  text-align: center;
+}
+
+.menu li a {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #000000; /* สีข้อความ */
+  background-color: #00ffa6; /* เปลี่ยนสีพื้นหลังเป็นสีแดง */
+  border: 1px solid #000000; /* เส้นขอบ */
+  border-radius: 5px; /* รูปทรงขอบ */
+  margin-right: 20px; /* ระยะห่างด้านขวา */
+}
+
+.menu li a:hover {
+  background-color: #f0f0f0; /* สีพื้นหลังเมื่อนำเมาส์ไปชี้ */
+}
+
+.menu li:last-child a {
+  border-right: none; /* ไม่มีเส้นขอบขวาสุด */
+}
